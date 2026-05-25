@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url('https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e.woff2') format('woff2');
+}
+
+:root {
+    --theme-fg: #ffffff;
+    --theme-bg: #000000;
+}
+
+:root.light {
+    --theme-fg: #000000;
+    --theme-bg: #ffffff;
+}
+
+@theme {
+    --font-sans: 'Outfit', system-ui, sans-serif;
+    --color-fg: var(--theme-fg);
+    --color-bg: var(--theme-bg);
+}
+
+@layer base {
+    body {
+        background-color: var(--theme-bg);
+        color: var(--theme-fg);
+        transition:
+            background-color 0.4s,
+            color 0.4s;
+    }
+}
