@@ -1,11 +1,27 @@
 @import 'tailwindcss';
 
 @font-face {
-    font-family: 'Outfit';
+    font-family: 'Uxum Grotesque';
     font-style: normal;
     font-display: swap;
-    font-weight: 100 900;
-    src: url('https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e.woff2') format('woff2');
+    font-weight: 400;
+    src: url('../fonts/UxumGrotesque-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Uxum Grotesque';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('../fonts/UxumGrotesque-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Uxum Grotesque';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('../fonts/UxumGrotesque-Bold.woff') format('woff');
 }
 
 :root {
@@ -19,7 +35,7 @@
 }
 
 @theme {
-    --font-sans: 'Outfit', system-ui, sans-serif;
+    --font-sans: 'Uxum Grotesque', system-ui, sans-serif;
     --color-fg: var(--theme-fg);
     --color-bg: var(--theme-bg);
 }
