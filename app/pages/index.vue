@@ -27,7 +27,7 @@ onMounted(() => {
 
 <template>
     <ImageTrail ref="heroSection" class="hero-section flex h-dvh items-center justify-center">
-        <div ref="heroText" class="relative z-10 text-center">
+        <div ref="heroText" class="relative z-20 text-center">
             <h1 class="hero-title font-sans font-black lowercase">citron caviar</h1>
             <p class="mt-4 text-xs font-semibold tracking-[0.3em] uppercase opacity-70 sm:text-sm sm:tracking-[0.35em]">
                 Agence événementielle

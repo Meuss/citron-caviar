@@ -20,7 +20,8 @@ let lastX = 0;
 let lastY = 0;
 let isFirstMove = true;
 
-onMounted(() => {
+onMounted(async () => {
+    await nextTick();
     imgEls = Array.from(containerRef.value!.querySelectorAll('.trail-img'));
     gsap.set(imgEls, { opacity: 0, scale: 0 });
 });
@@ -65,7 +66,7 @@ function activate(x: number, y: number) {
         scale: 0.6,
         opacity: 1,
         filter: 'blur(12px)',
-        zIndex: idx,
+        zIndex: (idx % POOL_SIZE) + 1,
     });
 
     // --- appear animation ---
@@ -96,13 +97,15 @@ function onLeave() {
     <div ref="containerRef" class="relative overflow-hidden" @mousemove="onMove" @mouseleave="onLeave">
         <!-- image size: h-70 w-47.5 (~280×190px). Try h-50 w-34 for smaller, h-90 w-60 for bigger -->
         <!-- rounded-sm = slight corners. Try rounded-lg or rounded-full for pill/circle shapes -->
-        <div
-            v-for="i in POOL_SIZE"
-            :key="i"
-            class="trail-img pointer-events-none absolute h-70 w-47.5 overflow-hidden rounded-sm"
-        >
-            <img :src="images[(i - 1) % images.length]" class="h-full w-full object-cover" alt="" draggable="false" />
-        </div>
+        <ClientOnly>
+            <div
+                v-for="i in POOL_SIZE"
+                :key="i"
+                class="trail-img pointer-events-none absolute h-70 w-47.5 overflow-hidden rounded-sm"
+            >
+                <img :src="images[(i - 1) % images.length]" class="h-full w-full object-cover" alt="" draggable="false" />
+            </div>
+        </ClientOnly>
 
         <slot />
     </div>
