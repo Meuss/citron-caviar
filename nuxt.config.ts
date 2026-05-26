@@ -6,6 +6,13 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ['@nuxt/image'],
     css: ['~/assets/css/tailwind.css'],
+    app: {
+        head: {
+            meta: [
+                { name: 'robots', content: 'noindex, nofollow' },
+            ],
+        },
+    },
     vite: {
         plugins: [tailwindcss()],
     },
