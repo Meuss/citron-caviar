@@ -107,43 +107,35 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section id="realisations" ref="sectionRef" class="bg-bg relative z-10 flex h-dvh flex-col">
-        <div class="px-6 pt-12 pb-6 lg:px-10">
-            <h2
-                class="text-center text-3xl font-bold tracking-[0.15em] uppercase lg:text-left lg:text-sm lg:font-semibold lg:tracking-[0.3em] lg:opacity-70"
-            >
-                Nos Réalisations
-            </h2>
+    <div class="outer-section bg-bg border-fg/50 border-t">
+        <div class="px-6 pt-10 pb-6">
+            <h2 class="text-3xl tracking-wide uppercase">Nos Réalisations</h2>
         </div>
 
-        <div ref="containerRef" class="relative flex-1 overflow-hidden">
-            <div class="grid h-full grid-cols-2 gap-2 px-2 lg:grid-cols-4">
-                <div
-                    v-for="(col, i) in columns"
-                    :key="i"
-                    class="real-col flex flex-col gap-2 will-change-transform"
-                    :class="{ 'hidden lg:flex': i >= 2 }"
-                >
-                    <img
-                        v-for="(src, j) in col"
-                        :key="j"
-                        :src="src"
-                        class="w-full rounded-sm object-cover"
-                        alt=""
-                        draggable="false"
-                    />
+        <section id="realisations" ref="sectionRef" class="relative z-10 flex h-dvh flex-col">
+            <div ref="containerRef" class="relative flex-1 overflow-hidden">
+                <div class="grid h-full grid-cols-2 gap-2 lg:grid-cols-4">
+                    <div
+                        v-for="(col, i) in columns"
+                        :key="i"
+                        class="real-col flex flex-col gap-2 will-change-transform"
+                        :class="{ 'hidden lg:flex': i >= 2 }"
+                    >
+                        <img
+                            v-for="(src, j) in col"
+                            :key="j"
+                            :src="src"
+                            class="w-full rounded-sm object-cover"
+                            alt=""
+                            draggable="false"
+                        />
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div
-                class="from-bg pointer-events-none absolute inset-x-0 bottom-0 flex h-40 items-end justify-center bg-linear-to-t to-transparent pb-8 lg:hidden"
-            >
-                <button
-                    class="border-fg/40 pointer-events-auto rounded-full border px-8 py-3 text-xs font-semibold tracking-[0.2em] uppercase"
-                >
-                    Voir plus
-                </button>
-            </div>
+        <div class="mt-20 flex justify-center">
+            <a href="#" class="border-fg border px-14 py-3 text-sm tracking-wide uppercase"> Voir plus </a>
         </div>
-    </section>
+    </div>
 </template>

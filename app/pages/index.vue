@@ -28,10 +28,8 @@ onMounted(() => {
 <template>
     <ImageTrail ref="heroSection" class="hero-section flex h-dvh items-center justify-center">
         <div ref="heroText" class="relative z-20 text-center">
-            <h1 class="hero-title font-sans font-black lowercase">citron caviar</h1>
-            <p class="mt-4 text-xs font-semibold tracking-[0.3em] uppercase opacity-70 sm:text-sm sm:tracking-[0.35em]">
-                Agence événementielle
-            </p>
+            <h1 class="hero-title font-sans font-bold lowercase">citron caviar</h1>
+            <p class="tracking-widest uppercase">Agence événementielle</p>
         </div>
     </ImageTrail>
     <SectionRealisations />
@@ -43,7 +41,7 @@ onMounted(() => {
 <style scoped>
 .hero-title {
     font-size: clamp(3rem, 12vw, 10rem);
-    line-height: 0.95;
+    line-height: 1;
     letter-spacing: -0.03em;
 }
 </style>

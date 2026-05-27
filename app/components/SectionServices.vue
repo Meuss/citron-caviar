@@ -46,11 +46,13 @@ function toggle(index: number) {
 </script>
 
 <template>
-    <section id="services" class="border-fg/20 bg-bg relative z-10 border-t py-16 lg:py-20">
-        <div class="mx-auto px-6 lg:px-10">
-            <h2 class="text-sm font-semibold tracking-[0.3em] uppercase opacity-70 sm:text-base">Services</h2>
+    <section id="services" class="bg-bg relative z-10">
+        <div class="px-6 pt-10 pb-6">
+            <div class="pt-10 pb-6">
+                <h2 class="text-3xl tracking-wide uppercase">Services</h2>
+            </div>
 
-            <div class="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <button
                     v-for="(service, i) in services"
                     :key="i"
@@ -72,7 +74,7 @@ function toggle(index: number) {
 
                     <div class="relative z-10 flex h-full flex-col p-5 lg:p-6">
                         <div class="flex items-start justify-between gap-4">
-                            <h3 class="text-xs font-semibold tracking-[0.15em] text-white uppercase sm:text-sm">
+                            <h3 class="text-sm text-white uppercase">
                                 {{ service.title }}
                             </h3>
 
@@ -94,7 +96,7 @@ function toggle(index: number) {
                             "
                         >
                             <div class="overflow-hidden">
-                                <p class="text-sm leading-relaxed text-white/80 italic">
+                                <p class="pr-[30%] text-sm leading-relaxed text-white">
                                     {{ service.description }}
                                 </p>
                             </div>
