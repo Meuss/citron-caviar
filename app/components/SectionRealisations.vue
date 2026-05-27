@@ -2,7 +2,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const sectionRef = ref<HTMLElement | null>(null);
+const outerRef = ref<HTMLElement | null>(null);
 const containerRef = ref<HTMLElement | null>(null);
 
 const columns = [
@@ -60,7 +60,7 @@ onMounted(async () => {
 
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: sectionRef.value,
+            trigger: outerRef.value,
             start: 'top top',
             end: () => `+=${maxOverflow() * 0.75}`,
             scrub: true,
@@ -107,35 +107,42 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="outer-section bg-bg border-fg/50 border-t">
-        <div class="px-6 pt-10 pb-6">
-            <h2 class="text-3xl tracking-wide uppercase">Nos Réalisations</h2>
-        </div>
+    <section id="realisations" class="outer-section pt-16">
+        <div class="border-fg/50 border-t">
+            <div class="px-6 pt-10 pb-6">
+                <h2 class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Réalisations</h2>
+            </div>
 
-        <section id="realisations" ref="sectionRef" class="relative z-10 flex h-dvh flex-col">
-            <div ref="containerRef" class="relative flex-1 overflow-hidden">
-                <div class="grid h-full grid-cols-2 gap-2 lg:grid-cols-4">
-                    <div
-                        v-for="(col, i) in columns"
-                        :key="i"
-                        class="real-col flex flex-col gap-2 will-change-transform"
-                        :class="{ 'hidden lg:flex': i >= 2 }"
-                    >
-                        <img
-                            v-for="(src, j) in col"
-                            :key="j"
-                            :src="src"
-                            class="w-full rounded-sm object-cover"
-                            alt=""
-                            draggable="false"
-                        />
+            <div ref="outerRef" class="relative z-10 flex h-dvh flex-col">
+                <div ref="containerRef" class="relative flex-1 overflow-hidden">
+                    <div class="grid h-full grid-cols-2 gap-3 lg:grid-cols-4">
+                        <div
+                            v-for="(col, i) in columns"
+                            :key="i"
+                            class="real-col flex flex-col gap-3 will-change-transform"
+                            :class="{ 'hidden lg:flex': i >= 2 }"
+                        >
+                            <img
+                                v-for="(src, j) in col"
+                                :key="j"
+                                :src="src"
+                                class="w-full object-cover"
+                                alt=""
+                                draggable="false"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <div class="mt-20 flex justify-center">
-            <a href="#" class="border-fg border px-14 py-3 text-sm tracking-wide uppercase"> Voir plus </a>
+            <div class="mt-20 flex justify-center">
+                <a
+                    href="#"
+                    class="border-fg hover:bg-fg hover:text-bg border px-14 py-3 text-sm tracking-wide uppercase transition-colors duration-300"
+                >
+                    Voir plus
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
 </template>

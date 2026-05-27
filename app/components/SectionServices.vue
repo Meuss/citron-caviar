@@ -15,7 +15,7 @@ const services = [
     {
         title: 'Coordination & Logistique',
         description:
-            'Organisation et gestion de chaque étape avec précision pour assurer un déroulement fluide et sans stress le jour J.',
+            'Organisation et gestion de chaque étape avec précision pour assurer un déroulement fluide et sans stress le jour&nbsp;J.',
         image: '/images/services/coordination.jpg',
     },
     {
@@ -46,35 +46,36 @@ function toggle(index: number) {
 </script>
 
 <template>
-    <section id="services" class="bg-bg relative z-10">
+    <section id="services" class="relative z-10">
         <div class="px-6 pt-10 pb-6">
             <div class="pt-10 pb-6">
-                <h2 class="text-3xl tracking-wide uppercase">Services</h2>
+                <h2 class="text-3xl tracking-wide uppercase lg:text-5xl">Services</h2>
             </div>
 
-            <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <button
                     v-for="(service, i) in services"
                     :key="i"
-                    class="service-card group relative aspect-3/4 cursor-pointer overflow-hidden text-left"
+                    class="service-card group relative aspect-3/4 transform-gpu cursor-pointer overflow-hidden text-left"
                     @click="toggle(i)"
                 >
                     <NuxtImg
                         :src="service.image"
                         :alt="service.title"
-                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform backface-hidden"
+                        :class="expandedIndex === i ? 'scale-105' : 'group-hover:scale-105'"
                         loading="lazy"
                         sizes="sm:50vw lg:33vw"
                     />
 
                     <div
-                        class="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-black/30 transition-opacity duration-500"
+                        class="absolute inset-0 bg-linear-to-b from-black/60 via-black/20 to-black/30 transition-opacity duration-500"
                         :class="expandedIndex === i ? 'opacity-100' : 'opacity-70'"
                     />
 
                     <div class="relative z-10 flex h-full flex-col p-5 lg:p-6">
-                        <div class="flex items-start justify-between gap-4">
-                            <h3 class="text-sm text-white uppercase">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="text-white uppercase">
                                 {{ service.title }}
                             </h3>
 
@@ -96,9 +97,7 @@ function toggle(index: number) {
                             "
                         >
                             <div class="overflow-hidden">
-                                <p class="pr-[30%] text-sm leading-relaxed text-white">
-                                    {{ service.description }}
-                                </p>
+                                <p class="pr-[30%] leading-relaxed text-white" v-html="service.description" />
                             </div>
                         </div>
                     </div>

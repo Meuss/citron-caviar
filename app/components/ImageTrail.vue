@@ -103,7 +103,12 @@ function onLeave() {
                 :key="i"
                 class="trail-img pointer-events-none absolute h-70 w-47.5 overflow-hidden rounded-sm"
             >
-                <img :src="images[(i - 1) % images.length]" class="h-full w-full object-cover" alt="" draggable="false" />
+                <img
+                    :src="images[(i - 1) % images.length]"
+                    class="h-full w-full object-cover"
+                    alt=""
+                    draggable="false"
+                />
             </div>
         </ClientOnly>
 

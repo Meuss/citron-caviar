@@ -11,7 +11,7 @@ const isDark = computed(() => mode.value === 'dark');
                 :class="isDark ? 'translate-x-0' : 'translate-x-3.5'"
             ></div>
         </div>
-        <span class="text-sm tracking-widest uppercase">
+        <span class="w-10 text-sm tracking-widest uppercase">
             {{ isDark ? 'Nuit' : 'Jour' }}
         </span>
     </button>

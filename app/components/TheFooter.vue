@@ -1,7 +1,10 @@
 <template>
-    <footer id="contact" class="bg-bg relative z-10 px-6 pt-16 pb-12 lg:px-10 lg:pt-20 lg:pb-16">
+    <footer id="contact" class="relative z-10 px-6 pt-16 pb-12 lg:px-10 lg:pt-20 lg:pb-16">
         <div class="flex justify-center">
-            <a href="mailto:info@citroncaviar.ch" class="border-fg border px-14 py-3 text-sm tracking-wide uppercase">
+            <a
+                href="mailto:info@citroncaviar.ch"
+                class="border-fg bg-fg/0 hover:bg-fg hover:text-bg border px-14 py-3 text-sm tracking-wide uppercase transition-colors duration-300"
+            >
                 Nous contacter
             </a>
         </div>
@@ -37,7 +40,7 @@
 
 <style scoped>
 .footer-title {
-    font-size: clamp(4rem, 18vw, 16rem);
+    font-size: clamp(4rem, 30vw, 16rem);
     line-height: 0.85;
     letter-spacing: -0.03em;
 }
