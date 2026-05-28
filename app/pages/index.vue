@@ -30,6 +30,8 @@ onMounted(() => {
         .to(heroSubtitle.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 1.2);
 
     // Scroll-driven fade out
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
+
     gsap.to(heroText.value, {
         scale: 0.7,
         filter: 'blur(20px)',
@@ -38,8 +40,8 @@ onMounted(() => {
         scrollTrigger: {
             trigger: sectionEl,
             start: 'top top',
-            end: 'bottom top',
-            pin: sectionEl,
+            end: isMobile ? '70% top' : 'bottom top',
+            pin: isMobile ? false : sectionEl,
             pinSpacing: false,
             scrub: true,
         },
