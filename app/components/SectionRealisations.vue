@@ -4,36 +4,39 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const outerRef = ref<HTMLElement | null>(null);
 const containerRef = ref<HTMLElement | null>(null);
+const sectionTitle = ref<HTMLElement | null>(null);
+
+useTitleReveal(sectionTitle);
 
 const columns = [
     [
-        '/realisations/col_1/1 CICA_site_pink 1.jpg',
-        '/realisations/col_1/2 CICA_site_gesa 1.jpg',
-        '/realisations/col_1/3 CICA_site_cremo 1.jpg',
-        '/realisations/col_1/4 CICA_site_gesa 1.jpg',
-        '/realisations/col_2/5 CICA_site_pink 1.jpg',
+        '/images/realisations/col_1/1_pink_1.jpg',
+        '/images/realisations/col_1/2_gesa_1.jpg',
+        '/images/realisations/col_1/3_cremo_1.jpg',
+        '/images/realisations/col_1/4_gesa_1.jpg',
+        '/images/realisations/col_2/5_pink_1.jpg',
     ],
     [
-        '/realisations/col_2/1 CICA_site_bcf 1.jpg',
-        '/realisations/col_2/2 CICA_site_bumotec 1.jpg',
-        '/realisations/col_2/3 CICA_site_redbull 1.jpg',
-        '/realisations/col_2/4 CICA_site_cremo 1.jpg',
-        '/realisations/col_1/5 CICA_site_bcf 1.jpg',
+        '/images/realisations/col_2/1_bcf_1.jpg',
+        '/images/realisations/col_2/2_bumotec_1.jpg',
+        '/images/realisations/col_2/3_redbull_1.jpg',
+        '/images/realisations/col_2/4_cremo_1.jpg',
+        '/images/realisations/col_1/5_bcf_1.jpg',
     ],
     [
-        '/realisations/col_3/1 CICA_site_gesa 1.jpg',
-        '/realisations/col_3/2 CICA_site_pink 1.jpg',
-        '/realisations/col_3/4 CICA_site_bcf 1.jpg',
-        '/realisations/col_3/5 CICA_site_cremo 1.jpg',
-        '/realisations/col_3/5 CICA_site_mariage 2.jpg',
+        '/images/realisations/col_3/1_gesa_1.jpg',
+        '/images/realisations/col_3/2_pink_1.jpg',
+        '/images/realisations/col_3/4_bcf_1.jpg',
+        '/images/realisations/col_3/5_cremo_1.jpg',
+        '/images/realisations/col_3/5_mariage_2.jpg',
     ],
     [
-        '/realisations/col_4/1 CICA_site_garage 1.jpg',
-        '/realisations/col_4/2 CICA_site_redbull 1.jpg',
-        '/realisations/col_4/3 CICA_site_bcf 1.jpg',
-        '/realisations/col_4/4 CICA_site_chantier 1.jpg',
-        '/realisations/col_4/5 CICA_site_bcf 2.jpg',
-        '/realisations/col_4/1 CICA_site_garage 1.jpg',
+        '/images/realisations/col_4/1_garage_1.jpg',
+        '/images/realisations/col_4/2_redbull_1.jpg',
+        '/images/realisations/col_4/3_bcf_1.jpg',
+        '/images/realisations/col_4/4_chantier_1.jpg',
+        '/images/realisations/col_4/5_bcf_2.jpg',
+        '/images/realisations/col_4/1_garage_1.jpg',
     ],
 ];
 
@@ -104,7 +107,7 @@ onMounted(async () => {
     <section id="realisations" class="outer-section pt-16">
         <div class="border-fg/50 border-t">
             <div class="px-6 pt-10 pb-6">
-                <h2 class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Réalisations</h2>
+                <h2 ref="sectionTitle" class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Réalisations</h2>
             </div>
 
             <div ref="outerRef" class="relative z-10 flex h-dvh flex-col">

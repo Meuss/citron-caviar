@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const footerTitle = ref<HTMLElement | null>(null);
+
+useTitleReveal(footerTitle);
+</script>
+
 <template>
     <footer id="contact" class="relative z-10 px-6 pt-16 pb-12 lg:px-10 lg:pt-20 lg:pb-16">
         <div class="flex justify-center">
@@ -9,7 +15,9 @@
             </a>
         </div>
 
-        <h2 class="footer-title mt-16 text-center font-sans font-bold lowercase lg:mt-20">citron caviar</h2>
+        <h2 ref="footerTitle" class="footer-title mt-16 text-center font-sans font-bold lowercase lg:mt-20">
+            citron caviar
+        </h2>
 
         <div class="mt-16 grid grid-cols-[3fr_2fr] gap-10 lg:mt-20 lg:grid-cols-3">
             <div class="text-sm">

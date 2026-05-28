@@ -1,6 +1,6 @@
 <div align="center">
 
-![Citron Caviar](public/cc.png)
+![Citron Caviar](public/readme.png)
 
 </div>
 

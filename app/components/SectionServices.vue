@@ -1,4 +1,29 @@
 <script setup lang="ts">
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const serviceCards = ref<HTMLElement[]>([]);
+const sectionTitle = ref<HTMLElement | null>(null);
+
+useTitleReveal(sectionTitle);
+
+onMounted(() => {
+    gsap.set(serviceCards.value, { opacity: 0 });
+
+    ScrollTrigger.batch(serviceCards.value, {
+        start: 'top 75%',
+        once: true,
+        onEnter: (batch) => {
+            gsap.to(batch, {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out',
+                stagger: 0.15,
+            });
+        },
+    });
+});
+
 const services = [
     {
         title: "Organisation d'événements",
@@ -49,12 +74,17 @@ function toggle(index: number) {
     <section id="services" class="relative z-10">
         <div class="px-6 pt-10 pb-6">
             <div class="pt-10 pb-6">
-                <h2 class="text-3xl tracking-wide uppercase lg:text-5xl">Services</h2>
+                <h2 ref="sectionTitle" class="text-3xl tracking-wide uppercase lg:text-5xl">Services</h2>
             </div>
 
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <button
                     v-for="(service, i) in services"
+                    :ref="
+                        (el) => {
+                            if (el) serviceCards[i] = el as HTMLElement;
+                        }
+                    "
                     :key="i"
                     class="service-card group relative aspect-3/4 transform-gpu cursor-pointer overflow-hidden text-left"
                     @click="toggle(i)"

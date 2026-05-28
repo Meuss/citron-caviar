@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const sectionTitle = ref<HTMLElement | null>(null);
+
+useTitleReveal(sectionTitle);
+
 const partners = [
     { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
     { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
@@ -12,7 +16,7 @@ const partners = [
 <template>
     <section class="relative z-10 pt-20 pb-10 lg:pb-20">
         <div class="px-6 pb-10 lg:pb-20">
-            <h2 class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Partenaires</h2>
+            <h2 ref="sectionTitle" class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Partenaires</h2>
         </div>
 
         <div class="marquee-wrap overflow-hidden">
