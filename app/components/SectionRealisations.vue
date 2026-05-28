@@ -119,13 +119,15 @@ onMounted(async () => {
                             class="real-col flex flex-col gap-1 will-change-transform lg:gap-3"
                             :class="{ 'hidden lg:flex': i >= 2 }"
                         >
-                            <img
+                            <NuxtImg
                                 v-for="(src, j) in col"
                                 :key="j"
                                 :src="src"
                                 class="w-full object-cover"
                                 alt=""
                                 draggable="false"
+                                loading="lazy"
+                                sizes="50vw lg:25vw"
                             />
                         </div>
                     </div>
