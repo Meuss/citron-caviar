@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <ImageTrail ref="heroSection" class="hero-section flex h-dvh items-center justify-center">
+    <ImageTrail ref="heroSection" class="hero-section flex h-svh items-center justify-center">
         <div ref="heroText" class="relative z-20 text-center">
             <h1 class="hero-title font-sans font-bold lowercase">citron caviar</h1>
             <p class="tracking-widest uppercase">Agence événementielle</p>
