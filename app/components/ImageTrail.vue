@@ -20,10 +20,34 @@ let lastX = 0;
 let lastY = 0;
 let isFirstMove = true;
 
+function autoPlay() {
+    const el = containerRef.value!;
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+
+    // gentle S-curve across the screen
+    const points = Array.from({ length: 8 }, (_, i) => {
+        const t = i / 7;
+        return {
+            x: w * (0.15 + t * 0.7),
+            y: h * (0.5 + Math.sin(t * Math.PI) * 0.2),
+        };
+    });
+
+    points.forEach((pt, i) => {
+        setTimeout(() => activate(pt.x, pt.y), 1800 + i * 60);
+    });
+}
+
 onMounted(async () => {
     await nextTick();
     imgEls = Array.from(containerRef.value!.querySelectorAll('.trail-img'));
     gsap.set(imgEls, { opacity: 0, scale: 0 });
+
+    // auto-play on touch devices
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        autoPlay();
+    }
 });
 
 function onMove(e: MouseEvent) {
@@ -101,7 +125,7 @@ function onLeave() {
             <div
                 v-for="i in POOL_SIZE"
                 :key="i"
-                class="trail-img pointer-events-none absolute h-70 w-47.5 overflow-hidden rounded-sm"
+                class="trail-img pointer-events-none absolute h-44 w-30 overflow-hidden rounded-sm lg:h-70 lg:w-47.5"
             >
                 <img
                     :src="images[(i - 1) % images.length]"
