@@ -79,12 +79,12 @@ function toggle(index: number) {
                                 {{ service.title }}
                             </h3>
 
-                            <div class="relative h-5 w-5 shrink-0">
+                            <div class="relative h-7 w-7 shrink-0">
                                 <span
-                                    class="absolute top-1/2 left-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 bg-white"
+                                    class="absolute top-1/2 left-1/2 h-px w-5 -translate-x-1/2 -translate-y-1/2 bg-white"
                                 />
                                 <span
-                                    class="absolute top-1/2 left-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-white transition-transform duration-300"
+                                    class="absolute top-1/2 left-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 bg-white transition-transform duration-300"
                                     :class="expandedIndex === i ? 'scale-y-0' : 'scale-y-100'"
                                 />
                             </div>

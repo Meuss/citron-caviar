@@ -11,7 +11,7 @@
 
         <h2 class="footer-title mt-16 text-center font-sans font-bold lowercase lg:mt-20">citron caviar</h2>
 
-        <div class="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+        <div class="mt-16 grid grid-cols-[3fr_2fr] gap-10 lg:mt-20 lg:grid-cols-3">
             <div class="text-sm">
                 <p class="tracking-wide uppercase">Adresse</p>
                 <p>
@@ -20,12 +20,12 @@
                 </p>
             </div>
 
-            <div class="text-sm">
+            <div class="order-3 text-sm lg:order-none lg:text-center">
                 <p class="tracking-wide uppercase">Contact</p>
                 <a href="mailto:info@citroncaviar.ch" class="inline-block"> info@citroncaviar.ch </a>
             </div>
 
-            <div class="text-sm lg:text-right">
+            <div class="order-2 text-sm lg:order-none lg:text-right">
                 <p class="tracking-wide uppercase">Réseaux</p>
                 <div class="flex flex-col lg:items-end">
                     <a href="https://www.instagram.com/citron_caviar__/" target="_blank" rel="noopener"> Instagram </a>
