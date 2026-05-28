@@ -20,12 +20,12 @@
                 </p>
             </div>
 
-            <div class="order-3 text-sm lg:order-none lg:text-center">
+            <div class="order-3 text-sm lg:order-0 lg:text-center">
                 <p class="tracking-wide uppercase">Contact</p>
                 <a href="mailto:info@citroncaviar.ch" class="inline-block"> info@citroncaviar.ch </a>
             </div>
 
-            <div class="order-2 text-sm lg:order-none lg:text-right">
+            <div class="order-2 text-sm lg:order-0 lg:text-right">
                 <p class="tracking-wide uppercase">Réseaux</p>
                 <div class="flex flex-col lg:items-end">
                     <a href="https://www.instagram.com/citron_caviar__/" target="_blank" rel="noopener"> Instagram </a>
