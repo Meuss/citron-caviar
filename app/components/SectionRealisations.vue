@@ -11,14 +11,14 @@ const columns = [
         '/realisations/col_1/2 CICA_site_gesa 1.jpg',
         '/realisations/col_1/3 CICA_site_cremo 1.jpg',
         '/realisations/col_1/4 CICA_site_gesa 1.jpg',
-        '/realisations/col_1/5 CICA_site_bcf 1.jpg',
+        '/realisations/col_2/5 CICA_site_pink 1.jpg',
     ],
     [
         '/realisations/col_2/1 CICA_site_bcf 1.jpg',
         '/realisations/col_2/2 CICA_site_bumotec 1.jpg',
         '/realisations/col_2/3 CICA_site_redbull 1.jpg',
         '/realisations/col_2/4 CICA_site_cremo 1.jpg',
-        '/realisations/col_2/5 CICA_site_pink 1.jpg',
+        '/realisations/col_1/5 CICA_site_bcf 1.jpg',
     ],
     [
         '/realisations/col_3/1 CICA_site_gesa 1.jpg',
@@ -33,6 +33,7 @@ const columns = [
         '/realisations/col_4/3 CICA_site_bcf 1.jpg',
         '/realisations/col_4/4 CICA_site_chantier 1.jpg',
         '/realisations/col_4/5 CICA_site_bcf 2.jpg',
+        '/realisations/col_4/1 CICA_site_garage 1.jpg',
     ],
 ];
 
@@ -72,7 +73,7 @@ onMounted(async () => {
     cols.forEach((col, i) => {
         tl.fromTo(
             col,
-            { y: i % 2 === 1 ? () => -maxOverflow() * 0.08 : 0 },
+            { y: 0 },
             {
                 y: () => -colOverflow(col),
                 duration: 1,
@@ -80,13 +81,6 @@ onMounted(async () => {
             },
             0,
         );
-    });
-
-    // Set initial stagger for odd columns
-    cols.forEach((col, i) => {
-        if (i % 2 === 1) {
-            gsap.set(col, { y: () => -maxOverflow() * 0.08 });
-        }
     });
 
     const imgs = Array.from(container.querySelectorAll('img')) as HTMLImageElement[];
@@ -115,11 +109,11 @@ onMounted(async () => {
 
             <div ref="outerRef" class="relative z-10 flex h-dvh flex-col">
                 <div ref="containerRef" class="relative flex-1 overflow-hidden">
-                    <div class="grid h-full grid-cols-2 gap-3 lg:grid-cols-4">
+                    <div class="grid h-full grid-cols-2 gap-1 lg:grid-cols-[1fr_2fr_2fr_1fr] lg:gap-3">
                         <div
                             v-for="(col, i) in columns"
                             :key="i"
-                            class="real-col flex flex-col gap-3 will-change-transform"
+                            class="real-col flex flex-col gap-1 will-change-transform lg:gap-3"
                             :class="{ 'hidden lg:flex': i >= 2 }"
                         >
                             <img
