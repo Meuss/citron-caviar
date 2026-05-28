@@ -63,10 +63,10 @@ const services = [
     },
 ];
 
-const expandedIndex = ref<number | null>(null);
+const expandedSet = reactive(new Set<number>());
 
 function toggle(index: number) {
-    expandedIndex.value = expandedIndex.value === index ? null : index;
+    expandedSet.has(index) ? expandedSet.delete(index) : expandedSet.add(index);
 }
 </script>
 
@@ -93,14 +93,14 @@ function toggle(index: number) {
                         :src="service.image"
                         :alt="service.title"
                         class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform backface-hidden"
-                        :class="expandedIndex === i ? 'scale-105' : 'group-hover:scale-105'"
+                        :class="expandedSet.has(i) ? 'scale-105' : 'group-hover:scale-105'"
                         loading="lazy"
                         sizes="sm:50vw lg:33vw"
                     />
 
                     <div
                         class="absolute inset-0 bg-linear-to-b from-black/60 via-black/20 to-black/30 transition-opacity duration-500"
-                        :class="expandedIndex === i ? 'opacity-100' : 'opacity-70'"
+                        :class="expandedSet.has(i) ? 'opacity-100' : 'opacity-70'"
                     />
 
                     <div class="relative z-10 flex h-full flex-col p-5 lg:p-6">
@@ -115,7 +115,7 @@ function toggle(index: number) {
                                 />
                                 <span
                                     class="absolute top-1/2 left-1/2 h-5 w-px -translate-x-1/2 -translate-y-1/2 bg-white transition-transform duration-300"
-                                    :class="expandedIndex === i ? 'scale-y-0' : 'scale-y-100'"
+                                    :class="expandedSet.has(i) ? 'scale-y-0' : 'scale-y-100'"
                                 />
                             </div>
                         </div>
@@ -123,11 +123,14 @@ function toggle(index: number) {
                         <div
                             class="grid transition-all duration-500 ease-out"
                             :class="
-                                expandedIndex === i ? 'mt-4 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                                expandedSet.has(i) ? 'mt-4 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                             "
                         >
                             <div class="overflow-hidden">
-                                <p class="pr-[30%] leading-relaxed text-white" v-html="service.description" />
+                                <p
+                                    class="leading-relaxed text-white sm:pr-10 md:pr-20 lg:pr-10 xl:pr-20 2xl:pr-[30%]"
+                                    v-html="service.description"
+                                />
                             </div>
                         </div>
                     </div>
