@@ -104,8 +104,8 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section id="realisations" class="outer-section pt-16">
-        <div class="border-fg/50 border-t">
+    <section id="realisations" class="outer-section relative pt-16">
+        <div class="border-fg/50 bg-bg border-t">
             <div class="px-6 pt-10 pb-6">
                 <h2 ref="sectionTitle" class="text-3xl tracking-wide uppercase lg:text-5xl">Nos Réalisations</h2>
             </div>

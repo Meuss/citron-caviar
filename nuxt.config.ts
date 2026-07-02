@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ['@nuxt/image'],
     image: {
-        provider: 'netlify',
+        // Netlify's Image CDN (/.netlify/images) only exists when served by Netlify.
+        // Locally, fall back to Nuxt's built-in IPX provider so images resolve.
+        provider: process.env.NETLIFY ? 'netlify' : 'ipx',
         format: ['webp'],
     },
     css: ['~/assets/css/tailwind.css'],

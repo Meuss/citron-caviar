@@ -57,7 +57,7 @@ onMounted(() => {
                 {{ ' ' }}
                 <span ref="heroCaviar" class="block opacity-0 lg:inline-block">caviar</span>
             </h1>
-            <p ref="heroSubtitle" class="mt-2 tracking-widest uppercase opacity-0">Agence événementielle</p>
+            <p ref="heroSubtitle" class="mt-2 font-normal tracking-widest uppercase opacity-0">Agence événementielle</p>
         </div>
     </ImageTrail>
     <SectionRealisations />

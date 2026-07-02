@@ -11,9 +11,11 @@ onMounted(() => {
 
 <template>
     <TheNav />
-    <div id="smooth-wrapper">
-        <div id="smooth-content">
-            <NuxtPage />
+    <div class="font-medium">
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <NuxtPage />
+            </div>
         </div>
     </div>
 </template>

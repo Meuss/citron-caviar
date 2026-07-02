@@ -19,6 +19,7 @@
     "devDependencies": {
         "@nuxt/image": "^2.0.0",
         "@tailwindcss/vite": "^4.3.2",
+        "@types/node": "^24.13.2",
         "prettier": "^3.9.4",
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-tailwindcss": "^0.8.0",

@@ -125,7 +125,7 @@ function onLeave() {
             <div
                 v-for="i in POOL_SIZE"
                 :key="i"
-                class="trail-img pointer-events-none absolute h-44 w-30 overflow-hidden rounded-sm lg:h-70 lg:w-47.5"
+                class="trail-img pointer-events-none absolute h-44 w-30 overflow-hidden lg:h-70 lg:w-47.5"
             >
                 <img
                     :src="images[(i - 1) % images.length]"
