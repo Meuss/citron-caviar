@@ -12,7 +12,7 @@ export function useTitleReveal(el: Ref<HTMLElement | null>) {
         const text = heading.textContent?.trim() ?? '';
         const words = text.split(/\s+/);
 
-        heading.innerHTML = words.map((w) => `<span class="inline-block opacity-0">${w}</span>`).join(' ');
+        heading.innerHTML = words.map((w) => `<span class="inline-block opacity-0 font-normal">${w}</span>`).join(' ');
 
         const spans = heading.querySelectorAll('span');
 

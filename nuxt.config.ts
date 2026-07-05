@@ -9,7 +9,20 @@ export default defineNuxtConfig({
         // Netlify's Image CDN (/.netlify/images) only exists when served by Netlify.
         // Locally, fall back to Nuxt's built-in IPX provider so images resolve.
         provider: process.env.NETLIFY ? 'netlify' : 'ipx',
-        format: ['webp'],
+        format: ['avif', 'webp'],
+        // Portfolio images live in Cloudinary; use `<NuxtImg provider="cloudinary">` for them.
+        cloudinary: {
+            baseURL: `https://res.cloudinary.com/${process.env.NUXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'demo'}/image/upload/`,
+        },
+    },
+    runtimeConfig: {
+        // Server-only — set on Netlify as NUXT_CLOUDINARY_API_KEY / NUXT_CLOUDINARY_API_SECRET.
+        cloudinaryApiKey: '',
+        cloudinaryApiSecret: '',
+        public: {
+            // Public — set on Netlify as NUXT_PUBLIC_CLOUDINARY_CLOUD_NAME.
+            cloudinaryCloudName: '',
+        },
     },
     css: ['~/assets/css/tailwind.css'],
     app: {

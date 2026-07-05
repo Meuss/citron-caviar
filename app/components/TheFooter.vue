@@ -2,13 +2,15 @@
 const footerTitle = ref<HTMLElement | null>(null);
 
 useTitleReveal(footerTitle);
+useFitText(footerTitle, { stackBelow: 1024 });
 </script>
 
 <template>
     <footer id="contact" class="relative z-10 px-6 pt-16 pb-12 lg:px-10 lg:pt-20 lg:pb-16">
         <div class="flex justify-center">
             <a
-                href="mailto:info@citroncaviar.ch"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScxKbSiPOA2b0QfEmzpHmgtRe8c9nLMf2jEoIlMmD3ITCeMbw/viewform"
+                target="_blank"
                 class="border-fg bg-fg/0 hover:bg-fg hover:text-bg border px-14 py-3 text-sm tracking-wide uppercase transition-colors duration-300"
             >
                 Nous contacter

@@ -86,7 +86,7 @@ function toggle(index: number) {
                         }
                     "
                     :key="i"
-                    class="service-card group relative aspect-3/4 transform-gpu cursor-pointer overflow-hidden text-left"
+                    class="service-card group relative aspect-3/4 cursor-pointer overflow-hidden text-left"
                     @click="toggle(i)"
                 >
                     <NuxtImg
@@ -126,7 +126,10 @@ function toggle(index: number) {
                                 expandedSet.has(i) ? 'mt-4 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                             "
                         >
-                            <div class="overflow-hidden">
+                            <!-- transform-gpu: own compositing layer so the collapsing text clips on
+                                 the GPU and isn't left as a stale raster inside ScrollSmoother's
+                                 transformed #smooth-content layer (iOS ghost-text fix). -->
+                            <div class="transform-gpu overflow-hidden backface-hidden">
                                 <p
                                     class="leading-relaxed text-white sm:pr-10 md:pr-20 lg:pr-10 xl:pr-20 2xl:pr-[30%]"
                                     v-html="service.description"

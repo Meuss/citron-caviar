@@ -40,12 +40,32 @@ const columns = [
     ],
 ];
 
+// Desktop shows the 4 source columns; mobile folds them into 2 columns so
+// every image is visible (left = cols 1+3, right = cols 2+4) instead of the
+// 3rd/4th columns dropping onto a clipped second grid row.
+const isMobile = ref(false);
+
+const displayColumns = computed(() =>
+    isMobile.value
+        ? [
+              [...(columns[0] ?? []), ...(columns[2] ?? [])],
+              [...(columns[1] ?? []), ...(columns[3] ?? [])],
+          ]
+        : columns,
+);
+
 const ease = 'none';
 
-onMounted(async () => {
-    await nextTick();
+let tl: gsap.core.Timeline | null = null;
 
-    const container = containerRef.value!;
+function buildTimeline() {
+    tl?.scrollTrigger?.kill();
+    tl?.kill();
+    tl = null;
+
+    const container = containerRef.value;
+    if (!container) return;
+
     const cols = Array.from(container.querySelectorAll('.real-col')) as HTMLElement[];
     const containerHeight = container.clientHeight;
 
@@ -62,7 +82,7 @@ onMounted(async () => {
         return Math.max(100, ...cols.map((c) => colOverflow(c)));
     }
 
-    const tl = gsap.timeline({
+    tl = gsap.timeline({
         scrollTrigger: {
             trigger: outerRef.value,
             start: 'top top',
@@ -73,20 +93,32 @@ onMounted(async () => {
         },
     });
 
-    cols.forEach((col, i) => {
-        tl.fromTo(
-            col,
-            { y: 0 },
-            {
-                y: () => -colOverflow(col),
-                duration: 1,
-                ease,
-            },
-            0,
-        );
+    cols.forEach((col) => {
+        tl!.fromTo(col, { y: 0 }, { y: () => -colOverflow(col), duration: 1, ease }, 0);
+    });
+}
+
+const mql = import.meta.client ? window.matchMedia('(max-width: 1023px)') : null;
+const onBreakpointChange = (e: MediaQueryListEvent) => {
+    isMobile.value = e.matches;
+};
+
+onMounted(async () => {
+    isMobile.value = mql!.matches;
+    mql!.addEventListener('change', onBreakpointChange);
+
+    await nextTick();
+    buildTimeline();
+
+    // Rebuild the parallax when the column count changes across the breakpoint.
+    watch(isMobile, async () => {
+        await nextTick();
+        buildTimeline();
+        ScrollTrigger.refresh();
     });
 
-    const imgs = Array.from(container.querySelectorAll('img')) as HTMLImageElement[];
+    // Column heights aren't known until images load — refresh once they are.
+    const imgs = Array.from(containerRef.value!.querySelectorAll('img')) as HTMLImageElement[];
     if (!imgs.every((img) => img.complete)) {
         await Promise.all(
             imgs.map((img) =>
@@ -101,6 +133,12 @@ onMounted(async () => {
         ScrollTrigger.refresh();
     }
 });
+
+onBeforeUnmount(() => {
+    mql?.removeEventListener('change', onBreakpointChange);
+    tl?.scrollTrigger?.kill();
+    tl?.kill();
+});
 </script>
 
 <template>
@@ -114,10 +152,9 @@ onMounted(async () => {
                 <div ref="containerRef" class="relative flex-1 overflow-hidden">
                     <div class="grid h-full grid-cols-2 gap-1 lg:grid-cols-[1fr_2fr_2fr_1fr] lg:gap-3">
                         <div
-                            v-for="(col, i) in columns"
+                            v-for="(col, i) in displayColumns"
                             :key="i"
                             class="real-col flex flex-col gap-1 will-change-transform lg:gap-3"
-                            :class="{ 'hidden lg:flex': i >= 2 }"
                         >
                             <NuxtImg
                                 v-for="(src, j) in col"
@@ -135,12 +172,12 @@ onMounted(async () => {
             </div>
 
             <div class="mt-20 flex justify-center">
-                <a
-                    href="#"
+                <NuxtLink
+                    to="/realisations"
                     class="border-fg hover:bg-fg hover:text-bg border px-14 py-3 text-sm tracking-wide uppercase transition-colors duration-300"
                 >
                     Voir plus
-                </a>
+                </NuxtLink>
             </div>
         </div>
     </section>
