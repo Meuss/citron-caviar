@@ -3,14 +3,24 @@ const sectionTitle = ref<HTMLElement | null>(null);
 
 useTitleReveal(sectionTitle);
 
-const partners = [
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-    { name: 'Le Buro', logo: '/images/partners/logo-le-buro.svg' },
-];
+// Auto-discover partner logos from assets/images/partners/CICA_sponsors_<order>_<name>.svg
+const partnerFiles = import.meta.glob('~/assets/images/partners/CICA_sponsors_*.svg', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+});
+
+const partners = Object.entries(partnerFiles)
+    .map(([path, logo]) => {
+        const file = path.split('/').pop()!.replace(/\.svg$/, '');
+        const match = file.match(/^CICA_sponsors_(\d+)_(.+)$/);
+        return {
+            order: match ? Number(match[1]) : 0,
+            name: match ? match[2] : file,
+            logo: logo as string,
+        };
+    })
+    .sort((a, b) => a.order - b.order);
 </script>
 
 <template>
@@ -26,14 +36,14 @@ const partners = [
                     :key="'a' + i"
                     :src="partner.logo"
                     :alt="partner.name"
-                    class="partner-logo mx-6 h-12 w-auto shrink-0 lg:mx-16 lg:h-24"
+                    class="partner-logo mx-6 h-16 w-32 shrink-0 object-contain lg:mx-16 lg:h-28 lg:w-56"
                 />
                 <img
                     v-for="(partner, i) in partners"
                     :key="'b' + i"
                     :src="partner.logo"
                     :alt="partner.name"
-                    class="partner-logo mx-6 h-12 w-auto shrink-0 lg:mx-16 lg:h-24"
+                    class="partner-logo mx-6 h-16 w-32 shrink-0 object-contain lg:mx-16 lg:h-28 lg:w-56"
                 />
             </div>
         </div>
