@@ -93,13 +93,14 @@ watch(activeFilter, () => nextTick(() => ScrollTrigger.refresh()));
             </div>
 
             <div class="space-y-1 px-6 pb-20 lg:space-y-3 lg:px-10">
-                <div v-for="project in visibleProjects" :key="project.slug" class="flex flex-wrap gap-1 lg:gap-3">
+                <div v-for="project in visibleProjects" :key="project.slug" class="flex flex-wrap gap-3">
                     <NuxtImg
                         v-for="(image, i) in project.images"
                         :key="i"
                         :provider="imageProvider"
                         :src="image.publicId ?? image.url"
                         :sizes="isLandscape(image) ? '100vw lg:100vw' : '100vw lg:33vw'"
+                        :densities="isLandscape(image) ? '1x 2x' : '1x 2x 3x'"
                         :class="
                             isLandscape(image)
                                 ? 'aspect-video basis-full'

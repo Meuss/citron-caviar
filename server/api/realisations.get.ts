@@ -38,7 +38,7 @@ export interface RealisationsResponse {
 /** "01 BCF" -> { order: 1, label: "BCF" }; "REDBULL" -> { order: Infinity, label: "REDBULL" }. */
 function parseFolderName(name: string): { order: number; label: string } {
     const match = name.match(/^(\d+)[\s\-_.]*(.+)$/);
-    if (match) return { order: Number(match[1]), label: match[2].trim().toUpperCase() };
+    if (match) return { order: Number(match[1]), label: (match[2] ?? name).trim().toUpperCase() };
     return { order: Number.MAX_SAFE_INTEGER, label: name.trim().toUpperCase() };
 }
 
