@@ -73,9 +73,9 @@ watch(activeFilter, () => nextTick(() => ScrollTrigger.refresh()));
                 </h2>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-4 px-6 pb-8 lg:justify-start lg:px-10 lg:pb-10">
+            <div class="flex flex-wrap justify-center gap-3 px-6 pb-8 lg:justify-start lg:px-10 lg:pb-10">
                 <button
-                    class="text-md rounded-full px-5 pt-2 pb-1 font-medium tracking-wide uppercase transition-colors duration-300 hover:cursor-pointer"
+                    class="rounded-full px-5 pt-2 pb-1 text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:cursor-pointer lg:text-base"
                     :class="activeFilter === 'TOUT' ? 'bg-fg text-bg' : 'border-fg/50 hover:border-fg border'"
                     @click="activeFilter = 'TOUT'"
                 >
@@ -84,7 +84,7 @@ watch(activeFilter, () => nextTick(() => ScrollTrigger.refresh()));
                 <button
                     v-for="project in projects"
                     :key="project.slug"
-                    class="text-md rounded-full px-5 pt-2 pb-1 font-medium tracking-wide uppercase transition-colors duration-300 hover:cursor-pointer"
+                    class="rounded-full px-5 pt-2 pb-1 text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:cursor-pointer lg:text-base"
                     :class="activeFilter === project.slug ? 'bg-fg text-bg' : 'border-fg/50 hover:border-fg border'"
                     @click="activeFilter = project.slug"
                 >
